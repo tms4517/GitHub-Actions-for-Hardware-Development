@@ -1,0 +1,19 @@
+name: Verilator Lint
+
+# Action is triggered to run on every PR to master.
+on:
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this action manually on master.
+  workflow_dispatch:
+
+jobs:
+  verilatorLint:
+    runs-on: [ self-hosted ]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Verilator Lint
+        run: |
+          echo Linting RTL using Verilator
+          verilator --lint-only -I<path/to/rtl/> <topLevelFile.sv>
